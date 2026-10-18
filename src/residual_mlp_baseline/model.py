@@ -5,7 +5,7 @@ import torch.nn as nn
 # Each task differs only in its input size and its number of classes.
 # The same model class is used for all three.
 TASKS = {
-    "mnist":      {"in_features": 28 * 28,     "num_classes": 10},    # 28x28 grayscale
+    "mnist":      {"in_features": 28 * 28,     "num_classes": 10, "depth": 70, "hidden": 1024, "width": 512},    # 28x28 grayscale
     "cifar10":    {"in_features": 3 * 32 * 32, "num_classes": 10},    # 32x32 color
     "imagenet32": {"in_features": 3 * 32 * 32, "num_classes": 1000},  # 32x32 color
 }

@@ -9,7 +9,7 @@ from .model import TASKS, ResidualMLP
 # plain SGD, constant learning rate, no dropout, no schedule, no augmentation.
 LEARNING_RATE = 0.05
 BATCH_SIZE = 256
-EPOCHS = {"mnist": 10, "cifar10": 60, "imagenet32": 60}
+EPOCHS = {"mnist": 15, "cifar10": 60, "imagenet32": 60}
 
 
 def prepare(X):
@@ -33,6 +33,7 @@ def train(task, X_train, y_train, seed=0, device="cuda"):
 
     # 1. Build the model for this task. Only input size and class count differ.
     model = ResidualMLP(**TASKS[task]).to(device)
+    print(f"{task}: depth={len(model.blocks)}")
 
     # 2. Wrap the data so we can loop over shuffled mini-batches.
     dataset = TensorDataset(prepare(X_train), torch.as_tensor(y_train).long())
